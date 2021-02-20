@@ -7,6 +7,7 @@ today = time.strftime('%m/%d').lstrip('0') #lstrip:字串左邊去掉'__'
 
 ptt_url = 'https://www.ptt.cc'
 
+
 def choice_web_ptt():
     index = input('請輸入看板名稱(q=離開)： ')
     if index == 'q':
@@ -49,34 +50,22 @@ def ptt_article(dom):
             if today == data and count == '爆': #加入推文 = 爆的文章
                 articles.append(article)
 
-    
-    if len(articles) != 0:
-        for article in articles:
-            print(article)
-        prev_url_dom = get_web_ptt(prev_url)
-        ptt_article(prev_url_dom)
-    else:
-        return
-    # return articles, article, prev_url
+    return articles, prev_url #回傳這網址的標題及上頁網址
 
 
 def main():
     while True:
         index =choice_web_ptt()
         dom =get_web_ptt(index)
-        ptt_article(dom)
-        # print(article)
+        articles, prev_url = ptt_article(dom)
 
-        # if len(article) != 0:
-        #     for article in articles:
-        #         print(article)
+        while len(articles) != 0:     #當articles) != 0時 執行以下代碼
+            for article in articles:
+                print(article)
 
-        #     prev_url_dom = get_web_ptt(prev_url)
-        #     articles, article, prev_url = ptt_article(prev_url_dom)
+            prev_url_dom = get_web_ptt(prev_url)
+            articles, prev_url = ptt_article(prev_url_dom)
 
-        # else:
-        #     break
 
-        
 if __name__ =='__main__':
     main()
