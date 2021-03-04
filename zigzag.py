@@ -10,12 +10,12 @@ try:
 
         if indent_increasing: #increase the number of spaces
             indent += 1
-            if indent == 10: #when indent increas to 5 ,trun indent_increasing into False
+            if indent == 10: #when indent increas to 10 ,trun indent_increasing into False
                 indent_increasing = False
 
         else:           #decrease the number of spaces
             indent -= 1
-            if indent == 0: #when indent decreas to 0 ,trun indent_increasing into False
+            if indent == 0: #when indent decreas to 0 ,trun indent_increasing into True
                 indent_increasing = True
 
 except KeyboardInterrupt:  #let KeyboardInterrupt error dispear
